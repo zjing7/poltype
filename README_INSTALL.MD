@@ -29,10 +29,6 @@ cd source
 * Open Makefile and comment out default operating system (MAC, unless you have mac)
 * Uncomment the default linux installation lines
 * Keep the RENAME line commented out
-```
-make -j 8
-make install
-
 
 * Download GDMA-2.2.11
 
@@ -46,6 +42,7 @@ Make sure to download the ZIP folder from the poltype2 branch, NOT the master br
 git clone git@github.com:pren/poltype.git --branch poltype2
 ```
 * Make sure you are on a node with an updated OS (as much as possible)
+
 
 * Install anaconda 
 
