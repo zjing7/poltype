@@ -31,6 +31,11 @@ cd source
 * Keep the RENAME line commented out
 
 * Download GDMA-2.2.11
+* Ren lab users can just add the following lines to your poltype .bashrc
+```shell
+export GDMADIR=/opt/gdma/gdma-2.3.3/bin
+export PATH=$GDMADIR:$PATH
+```
 
 * Download POLTYPE
 Make sure to download the ZIP folder from the poltype2 branch, NOT the master branch
@@ -93,6 +98,8 @@ export GDMADIR=/opt/gdma/gdma-2.2.11/bin/
 export PATH=/opt/gdma/gdma-2.2.11/bin/:$PATH
 export PSI_SCRATCH=/scratch/your_username/ 
 export PATH=/home/liuchw/Softwares/tinkers/Tinker-latest/source/:$PATH
+# you may add alias for submitting - replace path_to_poltype
+#alias run_poltype="nohup python path_to_poltype/poltype.py &"
 ```
 
 * Now clone the poltype2 branch
