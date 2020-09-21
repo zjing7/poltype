@@ -40,13 +40,10 @@ python /path_to_poltype/poltype.py --help
 ### Unittesting
 ```shell
 python ~/poltypepackage/PoltypeModules/test_poltype.py
-python ~/poltypepackage/PoltypeModules/test_poltype.py --method=test_Fragmenter --examplepath=/home/bdw2292/PoltypeJobs/MOLECULE0DontFrag
-python ~/poltypepackage/PoltypeModules/test_poltype.py --method=test_Fragmenter --examplepath=/home/bdw2292/PoltypeJobs/MOLECULE0DontFrag --dontremovetestcase
 ```
 
 * Currently has some bugs do not use
 * modifiedresidue library also has some bugs currently
-In order to test the fragmenter, run POLTYPE with fragmenting option turned off(dontfrag) to paramterize the torsion first, then specify the examplepath to that POLTYPE job. Add --dontremovetestcase , if there is an issue with the job and you want to restart without starting from scratch. Use --method flag to specify which POLTYPE test to run from the test_poltype module. 
 
 
 
@@ -173,6 +170,9 @@ onlyrotbndslist   specifies to only rotate bonds in the list, onlyrotbndlist=1 2
 
 ### Fragmenter
 ```
+maxgrowthcycles   specifies the maximum number of growth cycles before stopping fragmenter progtocol.
+                  Default=None
+
 dontfrag          specifies to not use fragmenter library for torsion.
                   Default=False
 

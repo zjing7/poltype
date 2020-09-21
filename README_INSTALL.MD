@@ -37,7 +37,12 @@ export GDMADIR=/opt/gdma/gdma-2.3.3/bin
 export PATH=$GDMADIR:$PATH
 ```
 
+* If you dont have a GitHub account, make one
+* Click the watch button on https://github.com/pren/poltype for important updates
+
+
 * Download POLTYPE
+
 Make sure to download the ZIP folder from the poltype2 branch, NOT the master branch
 
 ```https://github.com/pren/poltype/tree/poltype2 ```
@@ -87,6 +92,35 @@ pip install git+git://github.com/ParmEd/ParmEd.git
 * Note do not put source in your default .bashrc profile
 * Note do not keep multiple sources for different purposes (unless necessary) in the same .bashrc source file, this can cause internal conflicts to arise
 
+* Generic bashrc
+```shell
+#!/usr/bin/bash
+#
+##Python
+##Set whichever conda you are using in next line
+export PATH="path_to_conda/bin:$PATH"
+
+#Poltype
+conda activate poltype
+# you may add alias for submitting - replace path_to_poltype
+#alias run_poltype="nohup python path_to_poltype/poltype.py &"
+#
+#Gaussian, GDMA and scratch
+#replace paths with your own
+export g09root=path_to_g09/gaussian
+source $g09root/g09/path_to_g09_profile/g09.profile
+export GAUSS_SCRDIR=/scratch/$USER
+export GDMADIR=/path_to_gdma/bin
+export PATH=$GDMADIR:$PATH
+export PSI_SCRATCH=/scratch/$USER
+
+#Tinker
+export PATH=path_to_tinker/source/:$PATH
+
+```
+
+
+* Ren lab users
 ```shell      
 #Set whichever conda you are using in next line
 export PATH="/opt/software/anaconda/bin:$PATH"
@@ -102,10 +136,4 @@ export PATH=/home/liuchw/Softwares/tinkers/Tinker-latest/source/:$PATH
 #alias run_poltype="nohup python path_to_poltype/poltype.py &"
 ```
 
-* Now clone the poltype2 branch
-```
-git clone -b poltype2 git@github.com:pren/poltype.git poltype-poltype2
-```
 
-* If you dont have a GitHub account, make one
-* Click the watch button on https://github.com/pren/poltype for important updates
