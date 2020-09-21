@@ -32,3 +32,9 @@
 * CombintationsWithIndex_Bnd_b_c_Index_0.png   There are different combinations of ways to grow a fragment out                                               and each way is attempted before choosing the minimum                                                         difference in Wiberg bond order between parent bond and                                                       fragment bond. This minimum fragment is added to the                                                          FragmentGrowth image (last fragment on Combinations image).
 
 
+* Several dictionaries are available in the fragmenter directory for troubleshooting
+1) parentindextofragindex.txt        map from parent atom indices to fragment atom indices
+2) classkeytosmartsposarray.txt      map from parents torsion key (four type numbers) to the four indices of the torsion atoms in the SMARTS string.
+3) fragclasskeytoparentclasskey.txt  map from fragment torsion class key to parent torsion class key
+4) parentsymclasstofragsymclass.txt  map from parent type class to fragment type class
+5) classkeytotorsionindexes.txt      map from parent torsion key to the torsion atom indices

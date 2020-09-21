@@ -120,7 +120,11 @@ RMSPD.txt           Textfile computing the root mean square potential difference
 
 * CombintationsWithIndex_Bnd_b_c_Index_0.png   There are different combinations of ways to grow a fragment out                                               and each way is attempted before choosing the minimum                                                         difference in Wiberg bond order between parent bond and                                                       fragment bond. This minimum fragment is added to the                                                          FragmentGrowth image (last fragment on Combinations image).
 
-
+* parentindextofragindex.txt        map from parent atom indices to fragment atom indices
+* classkeytosmartsposarray.txt      map from parents torsion key (four type numbers) to the four indices of the torsion atoms in the SMARTS string.
+* fragclasskeytoparentclasskey.txt  map from fragment torsion class key to parent torsion class key
+* parentsymclasstofragsymclass.txt  map from parent type class to fragment type class
+* classkeytotorsionindexes.txt      map from parent torsion key to the torsion atom indices
 
 ### Poltype Modules
 * symmetry.py                Handles detecting symmetry in input molecule.
