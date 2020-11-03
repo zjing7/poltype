@@ -29,12 +29,14 @@ nohup python /path_to_poltype/poltype.py &
 python /path_to_poltype/poltype.py --help
 ```
 
-### Recommended Protocol
+### Recommended Protocol (esp for charged molecules)
 * For molecules that are neutral and not Zwitterion (total charge can be 0), PSI4 for all QM steps.
-* For charged molecules, use gaussian for opt only (use_gausoptonly). This will use Gau for all opt jobs but PSi4 for DMA and ESP QM. PCM is automatically turn on for all opt and torsion single point energy (MM/Tinker is set to use Generalized Kirkwood implicit solvation to be consistent)
-* For zwitterions that are overall neutral, POLTYPE can't detect overall net charge, in addtion to set use_gausoptonly, user needs to turn on PCM (optpcm=True, toroptpcm=True, torsppcm=True)  
-* PCM in PSI4 is not as robust (no analytuical gradient and fails for large ligands). In case you have trouble with charge molecules, please consider to use Gaussian only if above fails.
-
+* For molecules with more than 2 charge centers, POLTYPE turns on (implicit solvent) for QM optimization and torsion energy scan (MM/Tinker is set to use Generalized Kirkwood implicit solvation to be consistent)). DMA & ESP fitting of multipoles always in gas-phase. In case PCM is not on automatically for your molecules, you can mannually add options ot turn on PCM (optpcm=True, toroptpcm=True, torsppcm=True). 
+* PSI4 PCM optimzation or single point energy calculation of large molecules may be problematic. In that case, you may consider to use Gaussian
+* The most expesnive calculation in POLTYPE is the ESP (MP2/aug-cc-pvtz). For large molecules, Gaussain requires large memeory and disk.
+* Speical cases for charge molecules
+  ** If you need to use Gaussain (PSI4 PCM failed), and do not have suffcient mem/disk, you could lower the basis set to 6-311++G(2d,2p).
+  ** another possibility is to (use_gausoptonly. This will use Gaussian for all opt jobs but PSi4 for DMA and ESP QM.  
 
  
 ### Unittesting
