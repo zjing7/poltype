@@ -13,8 +13,6 @@
 * [ ] Docker contained for Linux OS
 * [ ] Give input option to add hydrogen.
 * [ ] Fix bug where WithIndex and WithoutIndex.png have no index. Make sure all molecules in image either have indexes or dont. 
-* [ ] Using the above map, autogenerate torsion, vdw ... parameters from .prm file inside poltype. Keep user added parameters in seperate dictionaries. 
-* [ ] Add automated vdw QM surface scan from water probes. Add this BEFORE torsion fitting, so that you always do torsion last. If user decides to do vdw fitting after key_5 already generated need to remove the key5 then and refit torsion.
 * [ ] Add comments to every function in poltype with the fields below
     Intent: 
     Input:
