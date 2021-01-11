@@ -12,7 +12,7 @@
 * [ ] Add README_TROUBLESHOOTING page (copy content from README_HELP). 
 * [ ] Docker contained for Linux OS
 * [ ] Give input option to add hydrogen.
-* [ ] Fix bug where WithIndex and WithoutIndex.png have no index. Make sure all molecules in image either have indexes or dont. 
+* [ ] Add more sophisticated zwitterion detection.
 * [ ] Add comments to every function in poltype with the fields below
     Intent: 
     Input:
