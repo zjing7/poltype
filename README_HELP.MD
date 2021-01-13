@@ -21,7 +21,7 @@
 nohup python /path_to_poltype/poltype.py &
 ```
 
-```ttt.xyz``` and ```ttt.key``` are the resulting structure and parameter files you will need.
+```final.xyz``` and ```final.key``` are the resulting structure and parameter files you will need.
 
 
 ### Help
@@ -30,11 +30,11 @@ python /path_to_poltype/poltype.py --help
 ```
 
 ### Recommended Protocol (esp for charged molecules)
-* For molecules that are neutral and not Zwitterion (total charge can be 0), PSI4 for all QM steps.
-* For molecules with more than 2 charge centers, POLTYPE turns on (implicit solvent) for QM optimization and torsion energy scan (MM/Tinker is set to use Generalized Kirkwood implicit solvation to be consistent)). DMA & ESP fitting of multipoles always in gas-phase. In case PCM is not on automatically for your molecules, you can mannually add options ot turn on PCM (optpcm=True, toroptpcm=True, torsppcm=True). 
+* For molecules that are neutral and not Zwitterion (total charge can be 0), PSI4 for all QM steps (psi4 is default behaviour).
+* For molecules with more than 1 charge center and 0 net charge, POLTYPE turns on (implicit solvent) for QM optimization and torsion energy scan (MM/Tinker is set to use Generalized Kirkwood implicit solvation to be consistent)). DMA & ESP fitting of multipoles always in gas-phase. In case PCM is not on automatically for your molecules, you can mannually add options ot turn on PCM (optpcm=True, toroptpcm=True, torsppcm=True). If gaussian is detected in enviorment, then gaussian will be used for PCM computations such as initial geometry optimization, torsion geometry optimization and torsion SP. 
 * PSI4 PCM optimzation or single point energy calculation of large molecules may be problematic. In that case, you may consider to use Gaussian
-* The most expesnive calculation in POLTYPE is the ESP (MP2/aug-cc-pvtz). For large molecules, Gaussain requires large memeory and disk.
-* Speical cases for charge molecules
+* The most expensive calculation in POLTYPE is the ESP (MP2/aug-cc-pvtz). For large molecules, Gaussain requires large memeory and disk.
+* Speical cases for zwitter ions
   ** If you need to use Gaussain (PSI4 PCM failed), and do not have suffcient mem/disk, you could lower the basis set to 6-311++G(2d,2p).
   ** another possibility is to (use_gausoptonly. This will use Gaussian for all opt jobs but PSi4 for DMA and ESP QM.  
 
@@ -44,7 +44,7 @@ python /path_to_poltype/poltype.py --help
 python ~/poltypepackage/PoltypeModules/test_poltype.py
 ```
 
-* Currently has some bugs do not use
+* Currently have not updated examples folder with recent changes, do not use
 * modifiedresidue library also has some bugs currently
 
 
@@ -108,11 +108,17 @@ freq              specifies to do a frequency calculation during geometry optimi
                   and determines if structure is minimum rather than saddle point, but very expensive. 
                   Default=False
 optpcm            specifies to use PCM for geometry optimization. 
-                  Default=True if there is a net charge.
+                  Default=True if there is no net charge, but some atoms have formal charge.
 optmaxcycle       specifies the number of max cycles or iterations allowed during optimization.
                   Default=5
 optmethod         specifies quantum method for geometry optimziation. 
                   Default=wB97XD
+
+use_gausgeomoptonly specifies to only use gaussian for initial geometry optimization and Psi4 for all other QM stepsi
+                  Default=False 
+
+skipsecondopt     specifies to skip second initial geometry optimization (default MP2 QM method)
+                  Default=False
 ```
 
 ### Distributed Multipole Analysis (DMA) and Electrostatic Single Point (ESP) Inputs
@@ -135,7 +141,7 @@ espbasisset       specifies basis set to use for quantum intended for refined mu
 
 ### Torsion Parameterization
 ```
-allownonaromaticringscanning     specifies to allow non-aromatic ring torsions to be scanned, only use for strange cases like entire molecule is a ring. Does not work for small non-aromatic rings, rdkit will not spin ring bonds.
+allownonaromaticringscanning     specifies to allow non-aromatic ring torsions to be scanned, only use for strange                                    cases like entire molecule is a ring. Does not work for small non-aromatic rings,                                    rdkit will not spin ring bonds.
                   Default=False
 rotalltors        specifies poltype to spin all rotatable bonds instead of transferring torsion parameters if 
                   found in database. 
@@ -154,10 +160,7 @@ torsionrestraint  specifies how many kcals/mol to restrain other torsions around
 foldnum           specifies the number of fourier terms used in torsion fitting.
                   Default=3
 tordatapointsnum  specifies the number of quantum jobs to sample along the dihedral angle for all torsions.
-                  Default=12 if number of torsion parameters to fit is less than 12, else automatically adds more points
-fitrotbndslist    specifies poltype to derive torsion parameters for all bonds
-                  specified as fitrotbndslist=1 2, 3 4, 5 6
-                  Default=[] (empty)
+                  Default=12 if number of torsion parameters to fit is less than 12, else automatically adds more                      points
 torspmethod       specifies the SP method used for getting refined multipoles via fitting to quantum potential. 
                   Default=wB97XD
 toroptmethod      specifies the opt method used for optimizing the geometry prior to deriving parameters. 
@@ -168,6 +171,16 @@ torspbasisset     specifies which basis set to use for SP during torsion paramet
                   Default=6-311++G**
 onlyrotbndslist   specifies to only rotate bonds in the list, onlyrotbndlist=1 2, 3 4, 5 6 
                   Default=[] (empty)
+
+tortor            specifies to sample the torsion-torsion potential energy surface for two adjecent and                                rotatable dihedrals
+                  Default=False
+
+fitfirsttorsionfoldphase specifies to add a phase fitting parameter to the first cosine term in the torsion fitting                           function
+                         Default=False
+
+refinenonaroringtors specifies to pucker and refine torsion parameters on non-aromatic rings.
+                     Default=False
+
 ```
 
 ### Fragmenter
@@ -208,6 +221,19 @@ amoebabioprmpath          speicfies the path to amoebabio18.prm file for stitchi
 atmidx   specifies which number to start poltype type numbers from. 
          Default=401
 ```
+
+### Van der Waals Parameterization.
+```
+dontdovdwscan            specifies to not refine initial guess vdw parameters from database assignment.
+                         Default=False
+```
+
+### Misc.
+```
+keyfiletoaddtodatabase   specifies to add keyfile parameters to amoeba09 parameter file, located in ParameterFiles/.
+                         Default=None
+```
+
 
 ### Minimal Example
 Minimal examples are any example folder in Examples/, that contain Symmetry as the first word. Minimal meaning just specifying the structure input file.
