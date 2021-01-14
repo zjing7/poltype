@@ -19,8 +19,8 @@
 ### Torsion Grid Setup
 
 * If the variable tortor is turned on, then torsion-torsion 2D dimensional scans are done for neighboring rotatable    bonds that are missing parameters. If either torsion on one of the rotatable bonds is missing, then 2D torsion grid  scan will be used to obtain tor-tor and also 1D torsion parameters.
-* poltype has a default number of 40 grid points to run QM computations for any single fragment. So even if there are more possible points on the defined grid, poltype uniformaly keeps only 40 by default. 
-
+* poltype has a default number of 40 grid points to run QM computations for any single fragment. So even if there are more possible points on the defined grid, poltype uniformaly keeps only 40 by default.
+* fragmenter libraru is used for ND torsional scans. 
 * By default the number of missing torsions x the number of cosine terms (default is three) determine how many quantum points to sample along the dihedral surface , if the number is greater than 12, else 12 is the default. 
 
 

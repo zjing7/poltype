@@ -181,6 +181,8 @@ fitfirsttorsionfoldphase specifies to add a phase fitting parameter to the first
 refinenonaroringtors specifies to pucker and refine torsion parameters on non-aromatic rings.
                      Default=False
 
+maxgrowthcycles      specifies how many growth cycles are allowed by fragmeneter module.
+                     Default=4
 ```
 
 ### Fragmenter

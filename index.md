@@ -11,6 +11,9 @@
 ## [Version history](README_VERSIONHISTORY.MD)
   * Log of POLTYPE updates
 
+## [Database Parameter Assignment](README_DATABASEPARSER.MD)
+  * Explains how parameters are assigned from database
+
 ## [Multipole](README_MULTIPOLE.MD)
   * Explains multipole frame defintions
 
@@ -19,6 +22,12 @@
 
 ## [Torsion](README_TORSION.MD)
   * Explains at high level how the torsiongenerator and torsionfit library works.
+
+## [Ring Torsion](README_RINGS.MD)
+  * Explains at high level how non-aromatic ring torsion puckering works.
+
+## [Van der Waals](README_VDW.MD)
+  * Explains at high level how van der waals fitting works.
 
 ## [Modifiedresidue](README_MODIFIEDRESIDUE.MD)
   * Explains at high level how the modifiedresidue library works.
